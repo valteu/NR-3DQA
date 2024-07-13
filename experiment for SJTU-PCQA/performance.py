@@ -3,7 +3,7 @@ from sklearn.svm import SVR
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 from scipy import stats
-import joblib  # Import joblib for saving and loading models
+import joblib
 
 # get data according to the train test name lists, return scaled train and test set
 def get_data(train_name_list, test_name_list):

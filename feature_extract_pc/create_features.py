@@ -10,7 +10,6 @@ if len(sys.argv) != 2:
 
 directory = sys.argv[1]
 
-# List all .ply files in the directory
 ply_files = [f for f in os.listdir(directory) if f.endswith('.ply')]
 
 all_features = []
@@ -24,20 +23,16 @@ for ply_file in ply_files:
     end = time.time()
     time_cost = end - start
     print(f"Time cost: {time_cost} sec.")
-    print(f"Number of features extracted: {len(features)}")  # Debug line
     all_features.append(features)
     filenames.append(os.path.splitext(ply_file)[0])
 
-# Adjust `feature_names` to match the number of features extracted (64 in this case)
 feature_names = []
 for feature_domain in ['l', 'a', 'b', 'curvature', 'anisotropy', 'linearity', 'planarity', 'sphericity']:
     for param in ["mean", "std", "entropy", "ggd1", "ggd2", "aggd1", "aggd2", "aggd3", "aggd4", "gamma1", "gamma2"]:
         feature_names.append(f"{feature_domain}_{param}")
 
-# Since the extracted features are 64, adjust the list accordingly
 feature_names = feature_names[:64]
 
-print(f"Expected number of feature names: {len(feature_names)}")  # Debug line
 
 features_df = pd.DataFrame(all_features, index=filenames, columns=feature_names)
 features_df.to_csv("features.csv")
