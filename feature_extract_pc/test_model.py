@@ -15,10 +15,14 @@ def predict_mos(model_file, scaler_file, new_feature_file, output_file):
     result_df.to_csv(output_file)
     print(f'Predicted MOS scores saved to {output_file}')
 
+def test_model():
+    model_file = 'svr_model.joblib'
+    scaler_file = 'scaler.joblib'
+    new_feature_file = 'features.csv'
+    output_file = 'predicted_mos.csv'
 
-model_file = 'svr_model.joblib'
-scaler_file = 'scaler.joblib'
-new_feature_file = 'features.csv'
-output_file = 'predicted_mos.csv'
+    predict_mos(model_file, scaler_file, new_feature_file, output_file)
 
-predict_mos(model_file, scaler_file, new_feature_file, output_file)
+
+if __name__ == '__main__':
+    test_model()
