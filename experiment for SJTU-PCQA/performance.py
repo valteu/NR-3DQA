@@ -20,7 +20,7 @@ def get_data(train_name_list, test_name_list):
             name_pc = name + str(i)
             data = feature_data.loc[name_pc, :].tolist()
             train_set.append(data)
-    
+
     for name in test_name_list:
         score = score_data[name].tolist()
         test_score = test_score + score
@@ -35,6 +35,7 @@ def get_data(train_name_list, test_name_list):
     # Save the scaler
     joblib.dump(scaler, 'scaler.joblib')
     return train_set, np.array(train_score) / 10, test_set, np.array(test_score) / 10
+
 
 if __name__ == '__main__':
     plcc = []
